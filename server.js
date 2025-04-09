@@ -1,4 +1,4 @@
-import http from 'http'; // Імпортуємо модуль HTTP для створення сервера
+import * as http from 'http'; // Імпортуємо модуль HTTP для створення сервера
 
 // Створюємо об'єкт HTTP-сервера
 const server = http.createServer((request, response) => {
