@@ -1,0 +1,17 @@
+{
+  "type": "module",
+  "name": "sample-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Dmytro Nochevnov",
+  "license": "MIT",
+  "description": "A simple HTTP server using Node.js and set cookie header",
+  "dependencies": {
+    "cookie": "^1.0.0",
+    "marked": "15.0.0"
+  }
+}

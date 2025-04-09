@@ -1,13 +1,24 @@
-import * as http from 'http'; // Імпортуємо модуль HTTP для створення сервера
+import * as http from 'http';
+import * as cookie from 'cookie';
+import { marked } from 'marked';
 
 // Створюємо об'єкт HTTP-сервера
 const server = http.createServer((request, response) => {
-    if (request.url === '/') {  // Перевіряємо, чи URL запиту є кореневим шляхом
-        response.writeHead(200, { 'Content-Type': 'text/plain' }); // Встановлюємо заголовок відповіді
-        response.write('Hello World\n'); // Відправляємо відповідь клієнту
-        response.end(); // Завершуємо відповідь
+    const cookies = cookie.parse(request.headers.cookie || ''); // Parse cookies from the request
 
-    } else { // Якщо URL не кореневий, відправляємо 404 помилку
+    if (request.url === '/') {
+        response.writeHead(200, {
+            'Content-Type': 'text/html; charset=utf-8',
+            'Set-Cookie': cookie.serialize('timestamp', new Date().toISOString(), {
+                httpOnly: true,
+                maxAge: 3600 // 1 hour
+            })
+        });
+
+        response.write(marked.parse(`# Your cookies:\n ## ${JSON.stringify(cookies)}\n`));
+        response.end();
+
+    } else {
         response.writeHead(404, { 'Content-Type': 'text/plain' });
         response.write('Сторінку не знайдено\n');
         response.end();
@@ -18,5 +29,3 @@ const server = http.createServer((request, response) => {
 server.listen(8080, () => {
     console.log('Сервер запущено на порту 8080');
 });
-
-
