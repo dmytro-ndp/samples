@@ -1,0 +1,13 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "description": "A simple logger utility with support for different log levels and file output.",
+  "main": "logger.js",
+  "scripts": {
+    "test": "node test.js",
+    "obfuscate": "javascript-obfuscator . --output dist/ --exclude package.json,test.js"
+  },
+  "keywords": ["logger", "logging", "utility"],
+  "author": "Dmytro Nochevnov",
+  "license": "MIT"
+}
